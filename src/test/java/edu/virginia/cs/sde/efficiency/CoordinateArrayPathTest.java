@@ -1,21 +1,20 @@
+package edu.virginia.cs.sde.efficiency;
+
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-class PointListPathTest {
-
+class CoordinateArrayPathTest {
     @Test
     void constructorInitialSize() {
-        Path testList = new PointListPath();
+        Path testList = new CoordinateArrayPath(10);
         assertEquals(testList.size(), 0);
     }
     @Test
     void addPointSizeIncrease() {
-        Path testList = new PointListPath();
+        Path testList = new CoordinateArrayPath(2);
         Point p = new Point(1.0, 2.0);
         testList.add(p);
         assertEquals(1, testList.size());
@@ -23,7 +22,7 @@ class PointListPathTest {
 
     @Test
     void getPoint() {
-        Path testList = new PointListPath();
+        Path testList = new CoordinateArrayPath(2);
 
         Point p = new Point(1.0, 2.0);
         testList.add(p);
@@ -38,7 +37,8 @@ class PointListPathTest {
                 new Point(1, 0),
                 new Point(1, 1)
         );
-        Path testList = new PointListPath(new ArrayList<>(inputPoints));
+        Path testList = new CoordinateArrayPath(3);
+        inputPoints.forEach(testList::add);
         assertEquals(3, testList.size());
     }
 
@@ -50,7 +50,8 @@ class PointListPathTest {
                 new Point(1, 1), //distance to next point = 5.0
                 new Point(4, 5) // totalDistance = 7.0
         );
-        Path testList = new PointListPath(new ArrayList<>(inputPoints));
+        Path testList = new CoordinateArrayPath(4);
+        inputPoints.forEach(testList::add);
         assertEquals(7.0, testList.totalDistance(), 1e-14);
     }
 

@@ -1,9 +1,13 @@
+package edu.virginia.cs.sde.efficiency;
+
 /**
  * Represents points as a 1-D of coordinates.
  *
  * Example: if we had the points (1, 2), (4, 6), (-3, 14), the array would be:
  *
  * [1, 2, 4, 6, -3, 14]
+ *
+ * That is, [x0, y0, x1, y1, x2, y2 ...]
  */
 
 public class CoordinateArrayPath implements Path {

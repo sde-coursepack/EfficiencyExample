@@ -1,3 +1,5 @@
+package edu.virginia.cs.sde.efficiency;
+
 public class Point {
     private double x, y;
 
@@ -56,7 +58,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point{" +
+        return "edu.virginia.cs.sde.efficiency.Point{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';
