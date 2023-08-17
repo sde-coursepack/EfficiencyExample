@@ -7,8 +7,8 @@ public class Main {
 
     private static void runBenchmark(int size) {
         System.out.println("\nBenchmark for size = " + size);
-        Path coordinateArray = new CoordinateArray(size);
-        Path pointArrayList = new PathPointList(size);
+        Path coordinateArray = new CoordinateArrayPath(size);
+        Path pointArrayList = new PointListPath(size);
         double[] xCoordinates = randomArray(size);
         double[] yCoordinates = randomArray(size);
         printBenchMarkTimes(size, coordinateArray, xCoordinates, yCoordinates);

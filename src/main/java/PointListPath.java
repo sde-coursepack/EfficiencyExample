@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class PathPointList implements Path {
+public class PointListPath implements Path {
     private final List<Point> points;
 
-    public PathPointList(ArrayList<Point> points) {
+    public PointListPath(ArrayList<Point> points) {
         this.points = points;
     }
-    public PathPointList() {
+    public PointListPath() {
         points = new ArrayList<>();
     }
 
-    public PathPointList(int initialCapacity) {
+    public PointListPath(int initialCapacity) {
         points = new ArrayList<>(initialCapacity);
     }
 

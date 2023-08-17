@@ -6,12 +6,12 @@
  * [1, 2, 4, 6, -3, 14]
  */
 
-public class CoordinateArray implements Path {
+public class CoordinateArrayPath implements Path {
     private final double[] pointArray;
     private final int length;
     private int currentSize;
 
-    public CoordinateArray(int capacity) {
+    public CoordinateArrayPath(int capacity) {
         pointArray = new double[capacity * 2];
         this.length = capacity;
         this.currentSize = 0;
