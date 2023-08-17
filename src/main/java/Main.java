@@ -1,28 +1,38 @@
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List.of(10000000, 20000000, 30000000, 40000000, 50000000, 75000000, 100000000).forEach(Main::runBenchmark);
+        List.of(10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000).forEach(Main::runBenchmark);
     }
 
     private static void runBenchmark(int size) {
         System.out.println("\nBenchmark for size = " + size);
         PointList coordinateArray = new CoordinateArray(size);
-        PointList primitivesOnly = new CoordinateArray(size);
         PointList pointArrayList = new PointArrayList(size);
         double[] xCoordinates = randomArray(size);
         double[] yCoordinates = randomArray(size);
+        printBenchMarkTimes(size, coordinateArray, xCoordinates, yCoordinates);
+        System.out.println("\t ---");
+        printBenchMarkTimes(size, pointArrayList, xCoordinates, yCoordinates);
+    }
+
+    private static void printBenchMarkTimes(int size, PointList pointList, double[] xCoordinates, double[] yCoordinates) {
+        long addTime = calculateAddTime(size, pointList, xCoordinates, yCoordinates);
+        System.out.printf("\t%-20s      add = %12dms\n", pointList.getClass().getName(), addTime);
+        long distanceTime = calculateDistanceTime(pointList);
+        System.out.printf("\t%-20s distance = %12dms\n", pointList.getClass().getName(), distanceTime);
+        System.out.printf("\t%-20s    total = %12dms\n", pointList.getClass().getName(), addTime + distanceTime);
+    }
+
+    private static long calculateAddTime(int size, PointList coordinateArray, double[] xCoordinates, double[] yCoordinates) {
+        long startTimeMilliseconds = System.currentTimeMillis();
         for (int i = 0; i < size; i++) {
             coordinateArray.add(xCoordinates[i], yCoordinates[i]);
-            pointArrayList.add(xCoordinates[i], yCoordinates[i]);
         }
-        long coordinateTime = calculateDistanceTime(coordinateArray);
-        System.out.printf("\tCoordinateArray distance = %12dms\n", coordinateTime);
-
-        long arrayListTime = calculateDistanceTime(pointArrayList);
-        System.out.printf("\tPointArrayList  distance = %12dms\n", arrayListTime);
+        long endTimeMilliseconds = System.currentTimeMillis();
+        return endTimeMilliseconds - startTimeMilliseconds;
     }
+
     private static long calculateDistanceTime(PointList pointList) {
         long startTimeNanoseconds = System.currentTimeMillis();
         pointList.totalDistance();
