@@ -6,16 +6,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class PointArrayListTest {
+class PathPointListTest {
 
     @Test
     void constructorInitialSize() {
-        PointList testList = new PointArrayList();
+        Path testList = new PathPointList();
         assertEquals(testList.size(), 0);
     }
     @Test
     void addPointSizeIncrease() {
-        PointList testList = new PointArrayList();
+        Path testList = new PathPointList();
         Point p = new Point(1.0, 2.0);
         testList.add(p);
         assertEquals(1, testList.size());
@@ -23,7 +23,7 @@ class PointArrayListTest {
 
     @Test
     void getPoint() {
-        PointList testList = new PointArrayList();
+        Path testList = new PathPointList();
 
         Point p = new Point(1.0, 2.0);
         testList.add(p);
@@ -38,7 +38,7 @@ class PointArrayListTest {
                 new Point(1, 0),
                 new Point(1, 1)
         );
-        PointList testList = new PointArrayList(new ArrayList<>(inputPoints));
+        Path testList = new PathPointList(new ArrayList<>(inputPoints));
         assertEquals(3, testList.size());
     }
 
@@ -50,19 +50,19 @@ class PointArrayListTest {
                 new Point(1, 1), //distance to next point = 5.0
                 new Point(4, 5) // totalDistance = 7.0
         );
-        PointList testList = new PointArrayList(new ArrayList<>(inputPoints));
+        Path testList = new PathPointList(new ArrayList<>(inputPoints));
         assertEquals(7.0, testList.totalDistance(), 1e-14);
     }
 
     @Test
     void totalDistanceEmpty() {
-        PointList testList = new PointArrayList();
+        Path testList = new PathPointList();
         assertEquals(0.0, testList.totalDistance());
     }
 
     @Test
     void totalDistanceSizeOne() {
-        PointList testList = new PointArrayList(1);
+        Path testList = new PathPointList(1);
         testList.add(new Point(3.0, 4.0));
         assertEquals(0.0, testList.totalDistance());
     }

@@ -6,7 +6,7 @@
  * [1, 2, 4, 6, -3, 14]
  */
 
-public class CoordinateArray implements PointList {
+public class CoordinateArray implements Path {
     private final double[] pointArray;
     private final int length;
     private int currentSize;

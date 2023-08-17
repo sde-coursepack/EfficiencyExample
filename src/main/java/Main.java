@@ -7,8 +7,8 @@ public class Main {
 
     private static void runBenchmark(int size) {
         System.out.println("\nBenchmark for size = " + size);
-        PointList coordinateArray = new CoordinateArray(size);
-        PointList pointArrayList = new PointArrayList(size);
+        Path coordinateArray = new CoordinateArray(size);
+        Path pointArrayList = new PathPointList(size);
         double[] xCoordinates = randomArray(size);
         double[] yCoordinates = randomArray(size);
         printBenchMarkTimes(size, coordinateArray, xCoordinates, yCoordinates);
@@ -16,7 +16,7 @@ public class Main {
         printBenchMarkTimes(size, pointArrayList, xCoordinates, yCoordinates);
     }
 
-    private static void printBenchMarkTimes(int size, PointList pointList, double[] xCoordinates, double[] yCoordinates) {
+    private static void printBenchMarkTimes(int size, Path pointList, double[] xCoordinates, double[] yCoordinates) {
         long addTime = calculateAddTime(size, pointList, xCoordinates, yCoordinates);
         System.out.printf("\t%-20s      add = %12dms\n", pointList.getClass().getName(), addTime);
         long distanceTime = calculateDistanceTime(pointList);
@@ -24,7 +24,7 @@ public class Main {
         System.out.printf("\t%-20s    total = %12dms\n", pointList.getClass().getName(), addTime + distanceTime);
     }
 
-    private static long calculateAddTime(int size, PointList coordinateArray, double[] xCoordinates, double[] yCoordinates) {
+    private static long calculateAddTime(int size, Path coordinateArray, double[] xCoordinates, double[] yCoordinates) {
         long startTimeMilliseconds = System.currentTimeMillis();
         for (int i = 0; i < size; i++) {
             coordinateArray.add(xCoordinates[i], yCoordinates[i]);
@@ -33,7 +33,7 @@ public class Main {
         return endTimeMilliseconds - startTimeMilliseconds;
     }
 
-    private static long calculateDistanceTime(PointList pointList) {
+    private static long calculateDistanceTime(Path pointList) {
         long startTimeNanoseconds = System.currentTimeMillis();
         pointList.totalDistance();
         long endTimeNanoseconds = System.currentTimeMillis();
